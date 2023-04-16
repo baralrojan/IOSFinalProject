@@ -120,14 +120,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHz-Qh-Lvq">
+                                <rect key="frame" x="171" y="100" width="52" height="35"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
+                                <connections>
+                                    <action selector="toggleFav:" destination="pBm-nY-FtB" eventType="touchUpInside" id="s8Z-L4-feK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Dev-Om-B85"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6pB-ZC-rN8" firstAttribute="leading" secondItem="4Ok-4p-lq2" secondAttribute="leading" id="3Fx-71-bUu"/>
+                            <constraint firstItem="oHz-Qh-Lvq" firstAttribute="centerX" secondItem="BtZ-99-pYB" secondAttribute="centerX" id="CxH-mQ-LMN"/>
                             <constraint firstItem="BtZ-99-pYB" firstAttribute="leading" secondItem="D8N-E2-UKH" secondAttribute="leadingMargin" id="KDG-UP-PGy"/>
                             <constraint firstItem="6pB-ZC-rN8" firstAttribute="top" secondItem="BtZ-99-pYB" secondAttribute="bottom" constant="8" id="KPH-ZF-x7L"/>
+                            <constraint firstItem="oHz-Qh-Lvq" firstAttribute="top" secondItem="BtZ-99-pYB" secondAttribute="top" id="Oti-q3-y1b"/>
                             <constraint firstItem="BtZ-99-pYB" firstAttribute="trailing" secondItem="D8N-E2-UKH" secondAttribute="trailingMargin" id="XBr-JN-uL9"/>
+                            <constraint firstItem="oHz-Qh-Lvq" firstAttribute="leading" secondItem="Dev-Om-B85" secondAttribute="leading" constant="171" id="hzF-RE-8Rf"/>
                             <constraint firstItem="6pB-ZC-rN8" firstAttribute="trailing" secondItem="4Ok-4p-lq2" secondAttribute="trailing" id="kRL-ns-HPO"/>
                             <constraint firstItem="BtZ-99-pYB" firstAttribute="trailing" secondItem="6pB-ZC-rN8" secondAttribute="trailing" id="sbh-tL-uuQ"/>
                             <constraint firstItem="Dev-Om-B85" firstAttribute="bottom" secondItem="4Ok-4p-lq2" secondAttribute="bottom" constant="41" id="smC-u6-nDI"/>
@@ -169,6 +181,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,6 +9,15 @@ import UIKit
 
 class NewsContentHomepageViewController: UIViewController {
     
+    @IBAction func toggleFav(_ sender: UIButton) {
+        if sender.currentImage == UIImage(systemName: "star"){
+            sender.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            sender.tintColor = .black
+        }else{
+            sender.setImage(UIImage(systemName: "star"), for: .normal)
+            sender.tintColor = .lightGray
+        }
+    }
     @IBOutlet var myTitleNews: UILabel!
     @IBOutlet var myNewsContent: UILabel!
     @IBOutlet var newImage: UIImageView!

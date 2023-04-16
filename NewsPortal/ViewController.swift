@@ -6,23 +6,27 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
     var artilcesList = [ArticleData]()
     //@IBOutlet weak var myTableView: UITableView!
+    var container: NSPersistentContainer!
     
     
     @IBOutlet var myTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        let article = FavArticle();
         fetchData()
     }
     
     func fetchData()
     {
-        let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=fc1b5e8749cc44ac9c8f023248140a7a")
+        let url = URL(string: "https://newsapi.org/v2/top-headlines?country=in&apiKey=fc1b5e8749cc44ac9c8f023248140a7a")
         let dataTask = URLSession.shared.dataTask(with: url!, completionHandler: {
             (data, response, error) in
             guard let data = data, error == nil else
