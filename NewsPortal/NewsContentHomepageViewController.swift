@@ -6,25 +6,41 @@
 //
 
 import UIKit
+import CoreData
 
 class NewsContentHomepageViewController: UIViewController {
+  
+    @IBOutlet var myTitleNews: UILabel!
+    @IBOutlet var myNewsContent: UILabel!
+    @IBOutlet var newImage: UIImageView!
+    var persistentContainer: NSPersistentContainer!
+    var favArticle: [FavArticle]!
+    
+    var newsContent:ArticleData = ArticleData(author: "", title: "", urlToImage: "", content: "")
     
     @IBAction func toggleFav(_ sender: UIButton) {
+        let moc = persistentContainer.viewContext
         if sender.currentImage == UIImage(systemName: "star"){
             sender.setImage(UIImage(systemName: "star.fill"), for: .normal)
             sender.tintColor = .black
+            
+            var tempFav = FavArticle(context: moc)
+            tempFav.title = myTitleNews.text!
+            tempFav.content = myNewsContent.text!
+            
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+           
         }else{
             sender.setImage(UIImage(systemName: "star"), for: .normal)
             sender.tintColor = .lightGray
         }
     }
-    @IBOutlet var myTitleNews: UILabel!
-    @IBOutlet var myNewsContent: UILabel!
-    @IBOutlet var newImage: UIImageView!
-    var newsContent:ArticleData = ArticleData(author: "", title: "", urlToImage: "", content: "")
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         myTitleNews.text = newsContent.title
         
         if newsContent.urlToImage != nil

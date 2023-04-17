@@ -10,23 +10,39 @@ import CoreData
 
 class ViewController: UIViewController {
     
+    var favArticle : [FavArticle] = []
+    
     var artilcesList = [ArticleData]()
     //@IBOutlet weak var myTableView: UITableView!
-    var container: NSPersistentContainer!
+    var persistentContainer: NSPersistentContainer!
     
     
     @IBOutlet var myTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        let article = FavArticle();
-        fetchData()
+        
+        
+            
+            let request: NSFetchRequest<FavArticle> = FavArticle.fetchRequest()
+        if(persistentContainer != nil){
+            let moc = persistentContainer.viewContext
+            guard
+                let results = try? moc.fetch(request)
+            else{return}
+            
+            favArticle = results
+        //    print(favArticle.count)
+        }
+           
+        
+            fetchData()
     }
+        
     
     func fetchData()
     {
-        let url = URL(string: "https://newsapi.org/v2/top-headlines?country=in&apiKey=fc1b5e8749cc44ac9c8f023248140a7a")
+        let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=fc1b5e8749cc44ac9c8f023248140a7a")
         let dataTask = URLSession.shared.dataTask(with: url!, completionHandler: {
             (data, response, error) in
             guard let data = data, error == nil else
@@ -110,6 +126,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "NewsContentHome") as? NewsContentHomepageViewController
         vc?.newsContent = artilcesList[indexPath.row]
+        vc?.favArticle = favArticle
+        vc?.persistentContainer = persistentContainer
         navigationController?.pushViewController(vc!, animated: true)
     }
     
